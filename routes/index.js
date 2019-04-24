@@ -3,39 +3,33 @@ const router = express.Router();
 const { ensureAuthenticated } = require('../config/auth');
 
 //Get locations to build website!
-//Location model
-const Location = require('../models/Location');
+//Message model
+const Message = require('../models/Message');
 
 // Welcome Page
 router.get('/', (req, res) => res.render('welcome'));
 
 // Dashboard
 router.get('/dashboard', ensureAuthenticated, (req, res) => {
-  Location.findOne({ current: true })
+  Message.findOne().sort({date: -1})
   .then(location => {
     if(!location){
       res.render('dashboard', {
         name: req.user.name,
         currentLocation: 'Could not find any current location!'
       });
+    } else{
+      const message = location.message;
+      res.render('dashboard', {
+        name: req.user.name,
+        currentLocation: message
+      });
     }
-    const message = location.message;
-    res.render('dashboard', {
-      name: req.user.name,
-      currentLocation: message
-    });
   })
   .catch(err => {
-    res.render('dashboard', {
-      name: req.user.name,
-      currentLocation: err.message
-    });
+    console.log(err);
   });
-  /*
-  res.render('dashboard', {
-    name: req.user.name
-  });
-  */
 });
+
 
 module.exports = router;
