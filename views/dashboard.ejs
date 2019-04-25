@@ -1,6 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <a class="navbar-brand" href="#">Welcome</a>
-    
+    <a class="navbar-brand" href=""><h1>Welcome</h1></a>  
   
     <div class="collapse navbar-collapse" id="navbarColor01">
       <ul class="navbar-nav mr-auto">
@@ -9,44 +8,36 @@
     </div>
 </nav>
 <h1 class="mt-4">Dashboard</h1>
-<p class="lead mb-3">Hello <%= name %>, how are you doing today? You are here: <%= currentLocation%></p>
-<p class="lead mb-3">This is a git test [august]</p>
+<p class="lead mb-3">Hello <%= name %>, how are you doing today?</p>
+<p class="lead mb-3">Your selected message is: "<%= message%>"</p>
 <a href="/users/logout" class="btn btn-secondary">Logout</a>
-<form>
-    <fieldset>
-        <legend>New input</legend>
-        <div class="form-group">
-            <label for="exampleTextarea">Enter location</label>
-            <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </fieldset>
-</form>
-<h4>or</h4>
-<form>
-    <fieldset>
-        <div class="form-group">
-            <label for="exampleSelect1">Select location</label>
-            <select class="form-control" id="exampleSelect">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-            </select>
-        </div>   
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </fieldset>
-</form>
-<!--
-<h4>History</h4>
-<div class="list-group">
-    <a href="#" class="list-group-item list-group-item-action">
-      Cras justo odio
-    </a>
-    <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in
-    </a>
-    <a href="#" class="list-group-item list-group-item-action">Morbi leo risus
-    </a>
+<div class="row mb-4">
+    <div class="col-md-6 m-auto">
+        <form>
+            <fieldset>
+                <legend>New input</legend>
+                    <div class="form-group">
+                        <label for="exampleTextarea">Enter message</label>
+                        <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+            </fieldset>
+        </form>
+        <h4>or</h4>
+        <form>
+            <fieldset>
+                <div class="form-group">
+                    <label for="exampleSelect1">Select message</label>
+                    <select class="form-control" id="exampleSelect">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>   
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </fieldset>
+        </form>
+    </div>
 </div>
--->
