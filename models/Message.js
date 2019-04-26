@@ -11,6 +11,12 @@ const MessageSchema = new mongoose.Schema({
     }
 });
 
+/*
+MessageSchema.statics.getLatest = function() {
+    return this.model('Message').findOne().sort({date: -1});
+};
+*/
+
 const Message = mongoose.model('Message', MessageSchema); //namespace/collection
 
 module.exports = Message;
