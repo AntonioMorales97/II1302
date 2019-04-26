@@ -13,7 +13,7 @@ require('./config/passport')(passport);
 // DB Config
 const db = require('./config/keys').MongoURI;
 // Connect to Mongo
-mongoose.connect(db, { useNewUrlParser: true })
+mongoose.connect(db, { useNewUrlParser: true, useFindAndModify: false })
 .then(() => console.log('MongoDB Connected...'))
 .catch(err => console.log(err));
 
@@ -50,6 +50,7 @@ app.use((req, res, next) => {
 app.use('/', require('./routes/index'));
 app.use('/users', require('./routes/users'));
 app.use('/hardware', require('./routes/hardware'));
+app.use('/dashboard', require('./routes/dashboard'));
 
 const PORT = process.env.PORT || 5000;
 
