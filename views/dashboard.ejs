@@ -9,16 +9,16 @@
 </nav>
 <h1 class="mt-4">Dashboard</h1>
 <p class="lead mb-3">Hello <%= name %>, how are you doing today?</p>
-<p class="lead mb-3">Your selected message is: "<%= message%>"</p>
+<p class="lead mb-3">Your displayed message is: "<%= message%>"</p>
 <a href="/users/logout" class="btn btn-secondary">Logout</a>
 <div class="row mb-4">
     <div class="col-md-6 m-auto">
-        <form>
+        <form action="/dashboard/message" method="POST">
             <fieldset>
                 <legend>New input</legend>
                     <div class="form-group">
                         <label for="exampleTextarea">Enter message</label>
-                        <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+                        <textarea class="form-control" id="message" name="message" rows="3"></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
             </fieldset>
