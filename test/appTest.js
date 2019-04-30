@@ -66,8 +66,8 @@ describe('App test', () => {
             await request(server).get('/users').expect(404);
         });
 
-        it('route for hardware returns json', async () => {
-            await request(server).get('/hardware').expect('Content-type', /json/)
+        it('route for hardware works', async () => {
+            await request(server).get('/hardware')
             .expect(200);
         });
 

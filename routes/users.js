@@ -4,8 +4,8 @@ const router = express.Router();
 const passport = require('passport');
 //const key = require('../config/keys').SECRET_KEY;
 
-// User model
-const UserModel = require('../models/User');
+// User model and service
+const UserModel = require('../models/user_model');
 const UserService = require('../models/user_services');
 const userService= UserService(UserModel);
 

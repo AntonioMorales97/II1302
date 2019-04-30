@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
     if(!message){
       res.status(404).send({ message: "Could not find message!"});
     } else{
-      res.status(200).send({ message: message.message});
+      res.status(200).send(message.message);
     }
   })
   .catch(err => {
