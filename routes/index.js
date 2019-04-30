@@ -10,11 +10,11 @@ router.get('/', (req, res) => {
   Message.findOne().sort({date: -1})
   .then(message => {
     if(!message){
-      res.render('welcome', {
+      res.status(204).render('welcome', {
         message: 'Could not find message!'
       });
     } else{
-      res.render('welcome', {
+      res.status(200).render('welcome', {
         message: message.message
       });
     }

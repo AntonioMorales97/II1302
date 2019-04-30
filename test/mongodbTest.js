@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const assert = require('chai').assert;
 
 // DB Config
-const db = require('../config/keys').MongoURI;
+const db = require('../config/keys').MONGO_URI;
 
 describe('MongoDB Connection', function() {
     it('Checking Connection...', function() {

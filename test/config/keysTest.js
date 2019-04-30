@@ -1,5 +1,5 @@
 const assert = require('chai').assert;
-const db = require('../../config/keys').MongoURI;
+const db = require('../../config/keys').MONGO_URI;
 
 describe('Keys', () => {
     it('Checking MongoURI...', () => {

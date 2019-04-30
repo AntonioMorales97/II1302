@@ -1,20 +1,49 @@
 const express = require('express');
 const router = express.Router();
-const bcrypt = require('bcryptjs');
+//const bcrypt = require('bcryptjs');
 const passport = require('passport');
+//const key = require('../config/keys').SECRET_KEY;
 
 // User model
-const User = require('../models/User');
+const UserModel = require('../models/User');
+const UserService = require('../models/user_services');
+const userService= UserService(UserModel);
 
 // Login Page
-router.get('/login', (req, res) => res.render('login'));
+router.get('/login', (req, res) => res.status(200).render('login'));
 
 // Register Page
-router.get('/register', (req, res) => res.render('register'));
+router.get('/register', (req, res) => res.status(200).render('register'));
 
 // Register Handle
-router.post('/register', (req, res) => {
-    const { name, email, password, password2, secretkey } = req.body;
+router.post('/register', async (req, res) => {
+    //try{
+        await userService.registerUser(req,res).then(() => {
+            req.flash('success_msg', 'You are now registered and can log in!');
+            res.status(200).redirect('/users/login');
+        }).catch(e => {
+            const {name, email, password, password2, secretKey} = req.body;
+            res.status(400).render('register', { errors: e.errors, 
+                                            name,
+                                            email,
+                                            password,
+                                            password2,
+                                            secretKey });
+        })/*
+        req.flash('success_msg', 'You are now registered and can log in!');
+        res.status(200).redirect('/users/login');
+        
+    }catch(e) {
+        const {name, email, password, password2, secretKey} = req.body;
+        res.status(400).render('register', { errors: e.errors, 
+                                            name,
+                                            email,
+                                            password,
+                                            password2,
+                                            secretKey });
+    }*/
+    /*
+    const { name, email, password, password2, secretKey } = req.body;
     let errors = [];
 
     //Check required fields
@@ -32,18 +61,18 @@ router.post('/register', (req, res) => {
         errors.push({ msg: 'Password need to be at least 6 characters'});
     }
 
-    if(secretkey !== 'anders123'){
+    if(secretKey !== key){
         errors.push({msg: 'Wrong secret key!'});
     }
 
     if(errors.length > 0){
-        res.render('register', {
+        res.status(400).render('register', {
             errors,
             name,
             email,
             password,
             password2,
-            secretkey
+            secretKey
         });
     } else {
         // Validation passed
@@ -52,7 +81,7 @@ router.post('/register', (req, res) => {
             if(user){
                 // User already exists
                 errors.push({ msg: 'Email is already registered'})
-                res.render('register', {
+                res.status(400).render('register', {
                     errors,
                     name,
                     email,
@@ -76,13 +105,13 @@ router.post('/register', (req, res) => {
                         newUser.save()
                         .then(user => {
                             req.flash('success_msg', 'You are now registered and can log in!');
-                            res.redirect('/users/login')
+                            res.status(200).redirect('/users/login')
                         })
                         .catch(err => console.log(err));
                 }))
             }
-        });
-    }
+        }); 
+    } */
 });
 
 // Login handle
