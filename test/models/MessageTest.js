@@ -1,5 +1,5 @@
 const expect = require('chai').expect;
-const Message = require('../../models/Message');
+const Message = require('../../models/message_model');
 
 describe('Message', function() {
     it('Invalid if message field empty', function(done) {
