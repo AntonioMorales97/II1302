@@ -4,8 +4,12 @@ const mongoose = require('mongoose');
 const flash = require('connect-flash');
 const session = require('express-session');
 const passport = require('passport');
-
 const app = express();
+
+const http = require('http').Server(app);
+const cfenv = require('cfenv');
+
+
 
 // Passport config
 require('./config/passport')(passport);
@@ -62,9 +66,10 @@ app.use((err, req, res, next) => {
     res.status(500).json({ error: err.message });
 });
 
+const app_env = cfenv.getAppEnv({vcapFile: 'vcap.json'});
 
-const PORT = process.env.PORT || 5000;
+const PORT = app_env.PORT || 5000;
 
-app.listen(PORT, console.log(`Server started on port ${PORT}`));
+http.listen(PORT, console.log(`Server started on port ${PORT}`));
 
 module.exports = app;
