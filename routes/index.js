@@ -12,7 +12,7 @@ router.get("/", async (req, res) => {
     const latestMessage = await messageService.getLatestMessage();
     if (!latestMessage) {
         res.status(204).render("welcome", {
-            message: "Could not find message!"
+            latestMessage: "Could not find message!"
         });
     } else {
         res.status(200).render("welcome", {
