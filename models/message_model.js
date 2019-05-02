@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const MessageSchema = new mongoose.Schema({
     message: {
@@ -11,6 +11,6 @@ const MessageSchema = new mongoose.Schema({
     }
 });
 
-const MessageModel = mongoose.model('Message', MessageSchema); //namespace/collection
+const MessageModel = mongoose.model("Message", MessageSchema); //namespace/collection
 
 module.exports = MessageModel;

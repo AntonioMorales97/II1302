@@ -1,43 +1,77 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <a class="navbar-brand" href=""><h1>Welcome</h1></a>  
-  
+    <a class="navbar-brand" href=""><h1>Office Display</h1></a>
+
     <div class="collapse navbar-collapse" id="navbarColor01">
-      <ul class="navbar-nav mr-auto">
-        <!--Add more here maybe-->
-      </ul>
+        <ul class="navbar-nav mr-auto">
+            <!--Add more here maybe-->
+        </ul>
     </div>
 </nav>
-<h1 class="mt-4">Dashboard</h1>
-<p class="lead mb-3">Hello <%= name %>, how are you doing today?</p>
-<p class="lead mb-3">Your displayed message is: "<%= message%>"</p>
-<a href="/users/logout" class="btn btn-secondary">Logout</a>
-<div class="row mb-4">
-    <div class="col-md-6 m-auto">
-        <form action="/dashboard/message" method="POST">
-            <fieldset>
-                <legend>New input</legend>
-                    <div class="form-group">
-                        <label for="exampleTextarea">Enter message</label>
-                        <textarea class="form-control" id="message" name="message" rows="3"></textarea>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col">
+            <h2 class="ml-1">Welcome!</h1>
+            <p class="lead mb-5 ml-1">
+                Hello <strong><%= name %></strong>, how are you doing today?
+            </p>
+            <div class="card bg-light mb-3" style="max-width: 30rem;">
+                    <div class="card-header">
+                        <h5>Message Currently Displayed at your Office:</h5>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-            </fieldset>
-        </form>
-        <h4>or</h4>
-        <form>
-            <fieldset>
-                <div class="form-group">
-                    <label for="exampleSelect1">Select message</label>
-                    <select class="form-control" id="exampleSelect">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                    </select>
-                </div>   
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </fieldset>
-        </form>
+                    <div class="card-body">
+                        <h3>
+                            <small class="text-muted"><%= latestMessage %></small>
+                        </h3>
+                    </div>
+            </div>
+            <a href="/users/logout" class="btn btn-secondary">Logout</a>
+        </div>
+        <div class="col-7">
+            <form action="/dashboard/message" method="POST">
+                <fieldset>
+                    <legend>Send New Message to Display</legend>
+                    <div class="form-group">
+                        <textarea
+                            class="form-control"
+                            id="message"
+                            name="message"
+                            rows="3"
+                            placeholder="Write your message here"
+                        ></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg btn-block mb-3">
+                        Update Display
+                    </button>
+                </fieldset>
+            </form>
+            <ul class="list-group mt-2 mb-2">
+                <li class="list-group-item list-group-item-secondary">
+                    <strong>Recent Messages You've Sent</strong>
+                </li>
+                <% messages.slice(1).forEach(message => { %>
+                <li class="list-group-item">
+                    <form
+                        action="/dashboard/message/update"
+                        method="POST"
+                        class="d-inline"
+                    >
+                        <input
+                            type="hidden"
+                            value="<%= message._id %>"
+                            name="msgToUpdate"
+                        />
+                        <button
+                            class="btn btn-primary btn-sm mr-5"
+                            type="submit"
+                        >
+                            Send To Display
+                        </button>
+                    </form>
+                    <%= message.message %>
+                </li>
+                <% }) %>
+            </ul>
+        </div>
     </div>
 </div>
