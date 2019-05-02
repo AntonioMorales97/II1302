@@ -2,3 +2,4 @@ applications:
 - name: II1302G3
   memory: 256M
   buildpack: sdk-for-nodejs
+  timeout: 180
