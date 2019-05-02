@@ -24,25 +24,6 @@ router.get("/", ensureAuthenticated, async (req, res) => {
             messages: messages
         });
     }
-    /*
-  Message.findOne().sort({date: -1})
-  .then(message => {
-    if(!message){
-      res.render('dashboard', {
-        name: req.user.name,
-        message: 'Could not find message!'
-      });
-    } else{
-      res.render('dashboard', {
-        name: req.user.name,
-        message: message.message
-      });
-    }
-  })
-  .catch(err => {
-    console.log(err);
-  });
-  */
 });
 
 router.post("/message", ensureAuthenticated, async (req, res) => {
