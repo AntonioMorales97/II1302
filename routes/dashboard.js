@@ -61,6 +61,7 @@ router.post("/message", ensureAuthenticated, async (req, res) => {
     }
 });
 
+/* Update Message date */
 router.post("/message/update", ensureAuthenticated, async (req, res) => {
     const latestMessage = await messageService.updateMessage(req.body.msgToUpdate);
     const messages = await messageService.getMessages();
