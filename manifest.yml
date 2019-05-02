@@ -1,4 +1,4 @@
 applications:
 - name: II1302G3
-  memory: 128M
+  memory: 256M
   buildpack: sdk-for-nodejs
