@@ -15,7 +15,7 @@ router.get("/", ensureAuthenticated, async (req, res) => {
     if (!latestMessage) {
         res.status(204).render("dashboard", {
             name: req.user.name,
-            message: "Could not find message!"
+            latestMessage: "Could not find message!"
         });
     } else {
         res.status(200).render("dashboard", {
