@@ -1,6 +1,10 @@
 {
   "name": "office_display_web",
   "version": "1.0.0",
+  "engines": {
+    "node": "10.15.3",
+    "npm": "3.10.10"
+  },
   "description": "",
   "main": "app.js",
   "scripts": {
