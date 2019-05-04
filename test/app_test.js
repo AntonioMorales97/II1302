@@ -3,7 +3,7 @@ const request = require('supertest');
 const app = require('../app').app;
 const mongoose = require('../app').mongoose;
 const server = require('../app').server;
-const secretKey = require('../config/keys').SECRET_KEY;
+const secretKey = 'anders123';
 const bcrypt = require('bcryptjs');
 
 const User = mongoose.model('User');
