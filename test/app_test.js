@@ -1,18 +1,18 @@
 const assert = require('chai').assert;
 const request = require('supertest');
-const app = require('../app');
-const mongoose = require('mongoose');
-const mongoDB = require('../config/keys').MONGO_URI;
+const app = require('../app').app;
+const mongoose = require('../app').mongoose;
+const server = require('../app').server;
 const secretKey = require('../config/keys').SECRET_KEY;
 const bcrypt = require('bcryptjs');
-
-mongoose.connect(mongoDB, { useNewUrlParser: true, useFindAndModify: false });
 
 const User = mongoose.model('User');
 
 describe('App test', () => {
-    it('has a module', () => {
+    it('has a complete module', () => {
         assert.isDefined(app, 'app is defined');
+        assert.isDefined(mongoose, 'mongoose is defined');
+        assert.isDefined(server, 'server is defined');
     });
     
     const testName = 'test';
@@ -24,10 +24,7 @@ describe('App test', () => {
     const testShortPassword = '123';
     const wrongSecretKey = 'abc123';
 
-    let server;
-
     before(done => {
-        server = app.listen(5000);
         var user = new User({ name: testName, email: testEmail, password: testPassword });
         bcrypt.genSalt(10, (err, salt) => 
                     bcrypt.hash(user.password, salt, (err, hash) => {

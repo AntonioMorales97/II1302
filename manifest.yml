@@ -1,4 +1,5 @@
 applications:
-- name: II1302G3
+- name: officedisplayii1302
   memory: 128M
   buildpack: sdk-for-nodejs
+  timeout: 180
