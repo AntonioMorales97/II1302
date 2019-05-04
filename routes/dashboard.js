@@ -36,9 +36,13 @@ router.post("/message", ensureAuthenticated, async (req, res) => {
             messages: messages
         });
     } else {
-        console.log(
-            "Something went wrong when posting message. Message is: " + message
-        ); //should not come here
+        //Should not come here...
+        console.log(`latestMessage: ${latestMessage}, messages: ${messages}`);
+        res.render("dashboard", {
+            name: req.user.name,
+            latestMessage: "Something went wrong",
+            messages: []
+        });
     }
 });
 
@@ -53,9 +57,13 @@ router.post("/message/update", ensureAuthenticated, async (req, res) => {
             messages: messages
         });
     } else {
-        console.log(
-            "Something went wrong when attempting to update the message. Message is: " + latestMessage
-        );
+        //Should not come here...
+        console.log(`latestMessage: ${latestMessage}, messages: ${messages}`);
+        res.render("dashboard", {
+            name: req.user.name,
+            latestMessage: "Something went wrong",
+            messages: []
+        });
     }
 });
 

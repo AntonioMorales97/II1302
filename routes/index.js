@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-//const { ensureAuthenticated } = require('../config/auth');
 
 //Message model and service
 const MessageModel = require("../models/message_model");
@@ -19,24 +18,6 @@ router.get("/", async (req, res) => {
             latestMessage: latestMessage.message
         });
     }
-
-    /*
-  Message.findOne().sort({date: -1})
-  .then(message => {
-    if(!message){
-      res.status(204).render('welcome', {
-        message: 'Could not find message!'
-      });
-    } else{
-      res.status(200).render('welcome', {
-        message: message.message
-      });
-    }
-  })
-  .catch(err => {
-    console.log(err);
-  });
-  */
 });
 
 module.exports = router;
