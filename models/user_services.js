@@ -20,8 +20,21 @@ const registerUser = User => async (req, res) => {
     if(password.length < 6){
         errors.push({ msg: 'Password need to be at least 6 characters'});
     }
+    
+    //Check if secret keys match
+    const secretKeyMatch = await new Promise((resolve, reject) => {
+        bcrypt.compare(secretKey, key, (err, isMatch) => {
+            if(err) reject(err);
+            if(isMatch) {
+                resolve(true);
+            } else {
+                resolve(false);
+            }
+        });
+    })
+    .catch(err => console.log(err));
 
-    if(secretKey !== key){
+    if(!secretKeyMatch){
         errors.push({msg: 'Wrong secret key!'});
     }
 
@@ -29,7 +42,7 @@ const registerUser = User => async (req, res) => {
         throw new ValidationError(errors);
     } else {
         // Validation passed
-        await User.findOne( { email: email})
+        await User.findOne( { email: email })
         .then(user => {
             if(user){
                 // User already exists
@@ -54,7 +67,7 @@ const registerUser = User => async (req, res) => {
                             //success
                         })
                         .catch(err => console.log(err));
-                }))
+                }));
             }
         })
         //do not catch!
