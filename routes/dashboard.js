@@ -13,6 +13,7 @@ router.get("/", ensureAuthenticated, async (req, res) => {
     const messages = await messageService.getMessages();
 
     if (!latestMessage) {
+        //Should never come here...
         res.status(204).render("dashboard", {
             name: req.user.name,
             latestMessage: "Could not find message!"
@@ -36,7 +37,7 @@ router.post("/message", ensureAuthenticated, async (req, res) => {
             messages: messages
         });
     } else {
-        //Should not come here...
+        //Should never come here...
         console.log(`latestMessage: ${latestMessage}, messages: ${messages}`);
         res.render("dashboard", {
             name: req.user.name,
@@ -57,7 +58,7 @@ router.post("/message/update", ensureAuthenticated, async (req, res) => {
             messages: messages
         });
     } else {
-        //Should not come here...
+        //Should never come here...
         console.log(`latestMessage: ${latestMessage}, messages: ${messages}`);
         res.render("dashboard", {
             name: req.user.name,
