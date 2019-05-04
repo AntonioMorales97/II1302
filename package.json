@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "engines": {
     "node": "10.15.3",
-    "npm": "3.10.10"
+    "npm": "6.7.0"
   },
   "description": "web application for office display",
   "main": "app.js",
