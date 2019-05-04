@@ -57,7 +57,7 @@ const registerUser = User => async (req, res) => {
                 }))
             }
         })
-        //.catch(err => console.log(err)); //nono
+        //do not catch!
     }
 };
 

@@ -1,15 +1,19 @@
 {
-  "name": "passport_js",
+  "name": "officedisplayii1302",
   "version": "1.0.0",
-  "description": "",
+  "engines": {
+    "node": "10.15.3",
+    "npm": "3.10.10"
+  },
+  "description": "web application for office display",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon server.js",
+    "dev": "nodemon app.js",
     "test": "mocha --exit || exit 0"
   },
   "keywords": [],
-  "author": "",
+  "author": "ii1302g3",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
