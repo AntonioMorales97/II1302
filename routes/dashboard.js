@@ -12,17 +12,19 @@ router.get("/", ensureAuthenticated, async (req, res) => {
     const latestMessage = await messageService.getLatestMessage();
     const messages = await messageService.getMessages();
 
-    if (!latestMessage) {
-        res.status(204).render("dashboard", {
-            name: req.user.name,
-            latestMessage: "Could not find message!"
-        });
-    } else {
+    if (latestMessage) {
         res.status(200).render("dashboard", {
             name: req.user.name,
             latestMessage: latestMessage.message,
             messages: messages
         });
+    } else {
+        res.status(200).render("dashboard", {
+            name: req.user.name,
+            latestMessage: "Could not find any message!",
+            messages: messages
+        });
+        
     }
 });
 
@@ -37,11 +39,10 @@ router.post("/message", ensureAuthenticated, async (req, res) => {
         });
     } else {
         //Should not come here...
-        console.log(`latestMessage: ${latestMessage}, messages: ${messages}`);
         res.render("dashboard", {
             name: req.user.name,
             latestMessage: "Something went wrong",
-            messages: []
+            messages: messages
         });
     }
 });
@@ -58,11 +59,10 @@ router.post("/message/update", ensureAuthenticated, async (req, res) => {
         });
     } else {
         //Should not come here...
-        console.log(`latestMessage: ${latestMessage}, messages: ${messages}`);
         res.render("dashboard", {
             name: req.user.name,
             latestMessage: "Something went wrong",
-            messages: []
+            messages: messages
         });
     }
 });

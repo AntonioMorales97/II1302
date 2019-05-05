@@ -11,7 +11,7 @@ const messageService = MessageService(MessageModel);
 router.get('/', async (req, res) => {
   const message = await messageService.getLatestMessage();
   if(!message){
-    res.status(404).send("Could not find message!");
+    res.status(200).send("Could not find any message!");
   } else{
     res.status(200).send(message.message);
   }
