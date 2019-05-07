@@ -65,7 +65,7 @@ describe('App test', () => {
 
         it('route for hardware works', async () => {
             await request(server).get('/hardware')
-            .expect(200);
+            .expect(200).expect('Content-Type', 'text/html; charset=utf-8');
         });
 
         it('should route to login page when trying to route "/dashboard" unauthenticated', async () => {
